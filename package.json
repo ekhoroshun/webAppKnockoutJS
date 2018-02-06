@@ -14,5 +14,8 @@
     "key"
   ],
   "author": "me",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.20.1"
+  }
 }

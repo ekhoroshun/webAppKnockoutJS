@@ -84,9 +84,10 @@ function initializeEmployeesModel() {
 
     function getEmployeeModelById(id) {
         let findIndex = _.findIndex(employeesModel, function(employee){
-            return employee._id===id;
+            return employee._id === id;
         })
-        if (findIndex != -1) return 
+        if (findIndex != -1) 
+        return 
         _.cloneDeep(employeesModel[findIdx]);
        
     }
@@ -104,7 +105,7 @@ function initializeEmployeesModel() {
         let $empId = $(this).attr("data-id");
         let clickedEmpoyee = getEmployeeModelById($empId);
 
-        let hireDateStr = moment(clickedEmpoyee.hireDate).format("LL");            
+        let hireDateStr = moment(clickedEmpoyee.HireDate).format("LL");            
         clickedEmpoyee.HireDate = hireDateStr;
 
         let modalTemplate = _.template(
