@@ -13,7 +13,7 @@
 
 $(document).ready(function(){
 
-let employeesModel = [];   
+let employeesModel;  
 
  // Defines a Lodash template to show data on the screen
 let rowTemplate = _.template(
@@ -29,7 +29,7 @@ function initializeEmployeesModel() {
 
     $.ajax({
         url: "https://hidden-dawn-99445.herokuapp.com/employees", // This only works if the Teams API is running locally - change this url to your Heroku API (/employees) to use your API on Heroku
-        type: "GET",
+        method: "GET",
         //data: JSON.stringify({ some: "data" }), // we can also send data using the "data" option
         contentType: "application/json"
 
@@ -43,7 +43,8 @@ function initializeEmployeesModel() {
         showGenericModal('Error', 'Unable to get Employees');
     });
 }
-    function showGenericModal(title, message) {
+    function showGenericModal(title, message) 
+    {
         $('#genericModal').modal({ // show the modal programmatically
             backdrop: 'static', // disable clicking on the backdrop to close
             keyboard: false // disable using the keyboard to close
@@ -54,7 +55,7 @@ function initializeEmployeesModel() {
         $('#my-modal-message').html(message);
         console.log(showGenericModal);
     }
-}
+
     function refreshEmployeeRows(employees){
                 
         let rows = rowTemplate({ 'employees': employees});
@@ -62,6 +63,7 @@ function initializeEmployeesModel() {
         employeeTable.empty();
         employeeTable.append(rows);
     }
+
     function getFilteredEmployeesModel(filterString) {
 
         let filterString = _.filter(employeesModel, function(employee){
@@ -84,9 +86,9 @@ function initializeEmployeesModel() {
         let findIndex = _.findIndex(employeesModel, function(employee){
             return employee._id===id;
         })
-        if (findIdx != -1) return 
+        if (findIndex != -1) return 
         _.cloneDeep(employeesModel[findIdx]);
-        else null;
+       
     }
 
     initializeEmployeesModel();
@@ -98,7 +100,7 @@ function initializeEmployeesModel() {
     })
     $(".bootstrap-header-table").on("click", ".body-row", function() {
 
-        console.log("main.js:::$(.bootstrap-header-table).on(click, .body-row, function() {");
+      
         let $empId = $(this).attr("data-id");
         let clickedEmpoyee = getEmployeeModelById($empId);
 
